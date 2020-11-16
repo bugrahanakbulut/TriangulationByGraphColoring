@@ -1,0 +1,2 @@
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Debug\TriangulationByGraphColoring.exe
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Debug\TriangulationByGraphColoring.pdb
