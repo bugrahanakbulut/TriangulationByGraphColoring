@@ -18,7 +18,10 @@ void draw_polygon(int button, int state, int x, int y)
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
         if (_polygon->DidPolygonClosed)
+        {
             _polygon->Vertices.clear();
+            _polygon->Diagonals.clear();
+        }
 		
         // reset
 
@@ -59,6 +62,21 @@ void display(void)
         auto& endPt = _polygon->DidPolygonClosed ? _polygon->Vertices.front() : _candidateVertex;
 
         glVertex2f(endPt[0], endPt[1]);
+        glEnd();
+    }
+
+    if (!_polygon->Diagonals.empty())
+    {
+        glBegin(GL_LINES);
+
+        glColor3f(255, 0, 0);
+
+        for (Line diagonal : _polygon->Diagonals)
+        {
+			glVertex2f(diagonal.StartPos[0], diagonal.StartPos[1]);
+			glVertex2f(diagonal.FinishPos[0], diagonal.FinishPos[1]);
+        }
+
         glEnd();
     }
 
