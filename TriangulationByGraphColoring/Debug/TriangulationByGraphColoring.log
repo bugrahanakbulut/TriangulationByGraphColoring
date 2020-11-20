@@ -1,3 +1,7 @@
 ﻿  Polygon.cpp
-C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(86,6): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(53,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(148,7): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(171,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(175,33): warning C4018: '<': signed/unsigned mismatch
   TriangulationByGraphColoring.vcxproj -> C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Debug\TriangulationByGraphColoring.exe

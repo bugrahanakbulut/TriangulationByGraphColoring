@@ -2,18 +2,19 @@
 
 #pragma once
 
+using namespace glm;
 
 class Line
 {
 public:
-	glm::vec2 StartPos;
-	glm::vec2 FinishPos;
+	vec2 StartPos;
+	vec2 FinishPos;
 
-	Line(glm::vec2 startPos, glm::vec2 finishPos);
+	Line(vec2 startPos, vec2 finishPos);
+
+	bool InLeft(vec2 vertex);
 
 	bool DidIntersect(Line other);
-
-	friend bool operator== (const Line& line1, const Line& line2);
 
 	bool operator== (const Line& other)
 	{

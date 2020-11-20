@@ -20,15 +20,20 @@ bool Line::DidIntersect(Line other)
 	bool aLeft = IsInLeftSide(other.StartPos, other.FinishPos, StartPos);
 	bool bLeft = IsInLeftSide(other.StartPos, other.FinishPos, FinishPos);
 
-	std::cout << "Intersection Result : " << ((cLeft ^ dLeft) && (aLeft ^ bLeft)) << "\n";
+	// std::cout << "Intersection Result : " << ((cLeft ^ dLeft) && (aLeft ^ bLeft)) << "\n";
 
 	return (cLeft ^ dLeft) && (aLeft ^ bLeft);
 
 }
 
+bool Line::InLeft(vec2 vertex)
+{
+	return IsInLeftSide(StartPos, FinishPos, vertex);
+}
+
 bool IsInLeftSide(vec2 a, vec2 b, vec2 c)
 {
-	float area = ((b[0] - a[0]) * (c[1] - a[1])) - ((c[0] - a[0]) * (b[1] - a[1]));
+	float area = ((b[0] - a[0]) * (c[1] - a[1])) - ((b[1] - a[1]) * (c[0] - a[0]));
 
 	area /= 2;
 

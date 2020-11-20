@@ -11,6 +11,7 @@ using namespace glm;
 class Polygon
 {
 private:
+	bool IsCounterClockwise();
 	
 
 public:

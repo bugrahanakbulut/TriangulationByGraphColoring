@@ -47,7 +47,7 @@ void mouse_move(int x, int y)
 
 void display(void)
 {
-    glClearColor(0.65, 1, 0.39, 1);
+    glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
 
     if (!_polygon->Vertices.empty())
