@@ -69,10 +69,10 @@ void display(void)
     {
         glBegin(GL_LINES);
 
-        glColor3f(255, 0, 0);
-
         for (Line diagonal : _polygon->Diagonals)
-        {
+		{
+			glColor3f(diagonal.LineColor[0], diagonal.LineColor[1], diagonal.LineColor[2]);
+
 			glVertex2f(diagonal.StartPos[0], diagonal.StartPos[1]);
 			glVertex2f(diagonal.FinishPos[0], diagonal.FinishPos[1]);
         }

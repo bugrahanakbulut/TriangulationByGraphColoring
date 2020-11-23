@@ -31,6 +31,21 @@ bool Line::InLeft(vec2 vertex)
 	return IsInLeftSide(StartPos, FinishPos, vertex);
 }
 
+void Line::ColorizeWithIntersectedLines(vec3 selfColor, vec3 otherColor)
+{
+	DidColored = true;
+	LineColor = selfColor;
+
+	for (int i = 0; i < IntersectedDiagonals.size(); i++)
+	{
+		if (!IntersectedDiagonals[i]->DidColored)
+		{
+			IntersectedDiagonals[i]->DidColored = true;
+			IntersectedDiagonals[i]->LineColor = otherColor;
+		}
+	}
+}
+
 bool IsInLeftSide(vec2 a, vec2 b, vec2 c)
 {
 	float area = ((b[0] - a[0]) * (c[1] - a[1])) - ((b[1] - a[1]) * (c[0] - a[0]));

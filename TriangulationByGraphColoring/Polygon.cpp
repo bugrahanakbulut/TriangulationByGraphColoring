@@ -29,6 +29,10 @@ void Polygon::FindDiagonals()
 	bool ccw = IsCounterClockwise();
 	
 	Diagonals = EleminateDiagonalsInOutsideOfPolygon(ccw, Vertices, notIntersectedDiagonals);
+
+	BuildDiagonalGraph();
+
+	ColorizeDiagonals();
 }
 
 void Polygon::BuildEdges() 
@@ -91,6 +95,30 @@ bool Polygon::IsCounterClockwise()
 	bool isCCW = det > 0;
 
 	return isCCW;
+}
+
+void Polygon::BuildDiagonalGraph()
+{
+	for (int i = 0; i < Diagonals.size(); i++) 
+	{
+		for (int j = i + 1; j < Diagonals.size(); j++)
+		{
+			if (Diagonals[i].DidIntersect(Diagonals[j]))
+			{
+				Diagonals[i].IntersectedDiagonals.push_back(&(Diagonals[j]));
+				Diagonals[j].IntersectedDiagonals.push_back(&(Diagonals[i]));
+			}
+		}
+	}
+}
+
+void Polygon::ColorizeDiagonals()
+{
+	for (int i = 0; i < Diagonals.size(); i++)
+	{
+		if (!Diagonals[i].DidColored)
+			Diagonals[i].ColorizeWithIntersectedLines(Color_1, Color_2);
+	}
 }
 
 vector<Line> FindAllPossibleDiagonals(vector<vec2> vertices)
