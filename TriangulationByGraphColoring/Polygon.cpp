@@ -34,6 +34,8 @@ void Polygon::FindDiagonals()
 	BuildDiagonalGraph();
 
 	ColorizeDiagonals();
+
+	RemoveDiagonalsNotUsingForTriangulation();
 }
 
 void Polygon::BuildEdges() 

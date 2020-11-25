@@ -42,9 +42,16 @@ void draw_polygon(int button, int state, int x, int y)
         _polygon->Vertices.push_back(_candidateVertex);
     }
 
+	if (button == 1 && state == GLUT_DOWN)
+	{
+		_polygon->DidPolygonClosed = true;
+
+		_polygon->FindDiagonals();
+	}
 
     if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
         StartDrawPolygon();
+    
 }
 
 void mouse_move(int x, int y)
@@ -107,8 +114,6 @@ void StepOne(int v)
     glutPostRedisplay();
 
     glutTimerFunc(_delayEachStep, StepTwo, 0);
-
-    cout << "Step One\n";
 }
 
 void StepTwo(int v)
@@ -118,8 +123,6 @@ void StepTwo(int v)
 	glutPostRedisplay();
 
     glutTimerFunc(_delayEachStep, StepThree, 0);
-
-	cout << "Step Two\n";
 }
 
 void StepThree(int v)
@@ -129,8 +132,6 @@ void StepThree(int v)
     glutPostRedisplay();
 
 	glutTimerFunc(_delayEachStep, StepFour, 0);
-
-	cout << "Step Three\n";
 }
 
 void StepFour(int v)
@@ -140,8 +141,6 @@ void StepFour(int v)
     glutPostRedisplay();
 
     glutTimerFunc(_delayEachStep, StepFive, 0);
-    
-    cout << "Step Four\n";
 }
 
 void StepFive(int v)
@@ -149,8 +148,6 @@ void StepFive(int v)
     _polygon->RemoveDiagonalsNotUsingForTriangulation();
 
     glutPostRedisplay();
-
-	cout << "Step Five\n";
 }
 
 int main(int argc, char** argv)
