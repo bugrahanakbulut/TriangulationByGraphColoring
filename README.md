@@ -1,6 +1,6 @@
 # Triangulation By Graph Coloring
 
-This repository contains the first assignment of Computational Geometry class from the Computer Animation and Game Technologies course of Hacettepe University, Turkey.
+This repository contains the first assignment of Computational Geometry class from the Computer Animation and Game Technologies deparment of Hacettepe University, Turkey.
 
 You can find all implementation details in report.
 
