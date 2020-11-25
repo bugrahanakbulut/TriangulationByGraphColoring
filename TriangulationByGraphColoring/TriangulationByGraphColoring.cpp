@@ -2,18 +2,27 @@
 #include <vector>
 #include <glut.h>
 #include <GLM/vec2.hpp>
+#include<thread> 
 #include "Polygon.h"
+
+using namespace glm;
+using namespace std;
 
 int _windowWidth = 1280;
 int _windowHeight = 720;
 
-glm::vec2 _candidateVertex;
+bool _isCounterStarted = false;
+int _frameCounter = 0, _stepFrame = 200;
+
+vec2 _candidateVertex;
 
 Polygon* _polygon = new Polygon();
 
+void StartDrawPolygon();
+
 void draw_polygon(int button, int state, int x, int y)
 {
-    _candidateVertex = glm::vec2(x, _windowHeight - y);
+    _candidateVertex = vec2(x, _windowHeight - y);
 
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
@@ -32,11 +41,7 @@ void draw_polygon(int button, int state, int x, int y)
 
 
     if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-    {
-        _polygon->FindDiagonals();
-
-        _polygon->DidPolygonClosed = true;
-    }
+        StartDrawPolygon();
 }
 
 void mouse_move(int x, int y)
@@ -56,10 +61,10 @@ void display(void)
         
         glColor3f(0, 0, 0);
 
-        for (auto& pt : _polygon->Vertices)
+        for (vec2 pt : _polygon->Vertices)
             glVertex2f(pt[0], pt[1]);
 
-        auto& endPt = _polygon->DidPolygonClosed ? _polygon->Vertices.front() : _candidateVertex;
+        vec2 endPt = _polygon->DidPolygonClosed ? _polygon->Vertices.front() : _candidateVertex;
 
         glVertex2f(endPt[0], endPt[1]);
         glEnd();
@@ -72,7 +77,6 @@ void display(void)
         for (Line diagonal : _polygon->Diagonals)
 		{
 			glColor3f(diagonal.LineColor[0], diagonal.LineColor[1], diagonal.LineColor[2]);
-
 			glVertex2f(diagonal.StartPos[0], diagonal.StartPos[1]);
 			glVertex2f(diagonal.FinishPos[0], diagonal.FinishPos[1]);
         }
@@ -82,6 +86,13 @@ void display(void)
 
     glFlush();
     glutSwapBuffers();
+}
+
+void StartDrawPolygon() 
+{
+    _polygon->DidPolygonClosed = true;
+
+    _polygon->FindDiagonals();
 }
 
 int main(int argc, char** argv)

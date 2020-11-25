@@ -12,8 +12,16 @@ using namespace glm;
 class Polygon
 {
 private:
+	bool _isOperating = false;
+
 	bool IsCounterClockwise();
-	
+
+	void BuildDiagonalGraph();
+
+	void ColorizeDiagonals();
+
+	void BuildEdges();
+
 
 public:
 	bool DidPolygonClosed = false;
@@ -22,15 +30,12 @@ public:
 	vector<Line> Edges;
 	vector<Line> Diagonals;
 
-	vec3 Color_1 = vec3(0, 0, 255);
+	vec3 Color_1 = vec3(255, 0, 0);
 	vec3 Color_2 = vec3(0, 255, 0);
 
-	void BuildEdges();
 
 	void FindDiagonals();
 
-	void BuildDiagonalGraph();
-
-	void ColorizeDiagonals();
+	void FindDiagonals(int step);
 };
 

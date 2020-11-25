@@ -1,12 +1,8 @@
-﻿  Polygon.cpp
+﻿  Line.cpp
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Line.cpp(44,20): warning C4018: '<': signed/unsigned mismatch
+  Polygon.cpp
 C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(104,25): warning C4018: '<': signed/unsigned mismatch
-C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(117,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(176,7): warning C4834: discarding return value of function with 'nodiscard' attribute
-C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(199,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(203,33): warning C4018: '<': signed/unsigned mismatch
-  TriangulationByGraphColoring.cpp
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(132,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Polygon.cpp(204,7): warning C4834: discarding return value of function with 'nodiscard' attribute
   Generating Code...
   TriangulationByGraphColoring.vcxproj -> C:\Users\akbul\Desktop\workspace\OpenGL\TriangulationByGraphColoring\TriangulationByGraphColoring\Debug\TriangulationByGraphColoring.exe

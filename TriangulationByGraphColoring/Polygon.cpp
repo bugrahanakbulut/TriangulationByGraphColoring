@@ -7,9 +7,12 @@
 #include <GLM/common.hpp>
 #include "Polygon.h"
 #include "Line.h"
+#include<windows.h>
 
 using namespace std;
 using namespace glm;
+
+unsigned int microsecond = 1000;
 
 vector<Line> FindAllPossibleDiagonals(vector<vec2> vertices);
 vector<Line> CheckEdgeAndDiagonalsForIntersection(vector<Line> allLines, vector<Line> polygonEdges);
@@ -18,8 +21,6 @@ bool CheckVertexesConvex(bool isPolygonCCw, vec2 a, vec2 b, vec2 c);
 
 void Polygon::FindDiagonals() 
 {
-	cout << boolalpha;
-
 	BuildEdges();
 
 	vector<Line> possibleDiagonals = FindAllPossibleDiagonals(Vertices);
@@ -33,6 +34,33 @@ void Polygon::FindDiagonals()
 	BuildDiagonalGraph();
 
 	ColorizeDiagonals();
+}
+
+void Polygon::FindDiagonals(int step) 
+{
+	
+	BuildEdges();
+
+	Sleep(microsecond);
+
+	Diagonals = FindAllPossibleDiagonals(Vertices);
+
+	Sleep(microsecond);
+
+	Diagonals = CheckEdgeAndDiagonalsForIntersection(Diagonals, Edges);
+
+	Sleep(microsecond);
+
+	bool ccw = IsCounterClockwise();
+
+	Diagonals = EleminateDiagonalsInOutsideOfPolygon(ccw, Vertices, Diagonals);
+
+	Sleep(microsecond);
+
+	BuildDiagonalGraph();
+
+	ColorizeDiagonals();
+
 }
 
 void Polygon::BuildEdges() 
@@ -54,7 +82,7 @@ bool Polygon::IsCounterClockwise()
 
 	int index = -1;
 
-	for (int i = 0; i < Vertices.size(); i++)
+	for (unsigned int i = 0; i < Vertices.size(); i++)
 	{
 		if (leftMostVertex.x > Vertices[i].x)
 		{
@@ -99,7 +127,7 @@ bool Polygon::IsCounterClockwise()
 
 void Polygon::BuildDiagonalGraph()
 {
-	for (int i = 0; i < Diagonals.size(); i++) 
+	for (unsigned int i = 0; i < Diagonals.size(); i++) 
 	{
 		for (int j = i + 1; j < Diagonals.size(); j++)
 		{
@@ -114,7 +142,7 @@ void Polygon::BuildDiagonalGraph()
 
 void Polygon::ColorizeDiagonals()
 {
-	for (int i = 0; i < Diagonals.size(); i++)
+	for (unsigned int i = 0; i < Diagonals.size(); i++)
 	{
 		if (!Diagonals[i].DidColored)
 			Diagonals[i].ColorizeWithIntersectedLines(Color_1, Color_2);
@@ -196,11 +224,11 @@ vector<Line> EleminateDiagonalsInOutsideOfPolygon(bool isPolygonCounterClockwise
 		
 	vector<Line> rejected;
 
-	for (int i = 0; i < diagonals.size(); i++)
+	for (unsigned int i = 0; i < diagonals.size(); i++)
 	{
 		int indexOfStartingPoint = -1;
 
-		for (int iterate = 0; iterate < vertices.size(); iterate++)
+		for (unsigned int iterate = 0; iterate < vertices.size(); iterate++)
 		{
 			if (vertices[iterate] == diagonals[i].StartPos)
 			{

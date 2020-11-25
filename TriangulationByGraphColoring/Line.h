@@ -24,7 +24,7 @@ public:
 
 	bool InLeft(vec2 vertex);
 
-	bool DidIntersect(Line other);
+	bool DidIntersect(Line other, bool isDebugEnabled = false);
 
 	void ColorizeWithIntersectedLines(vec3 selfColor, vec3 otherColor);
 
