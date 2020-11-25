@@ -1,13 +1,13 @@
 #include <array>;
 #include <algorithm>
 #include <iostream>
+#include <glut.h>
 #include <GLM/vec2.hpp>
 #include <GLM/mat3x3.hpp>
 #include <GLM/mat2x2.hpp>
 #include <GLM/common.hpp>
 #include "Polygon.h"
 #include "Line.h"
-#include<windows.h>
 
 using namespace std;
 using namespace glm;
@@ -23,44 +23,17 @@ void Polygon::FindDiagonals()
 {
 	BuildEdges();
 
-	vector<Line> possibleDiagonals = FindAllPossibleDiagonals(Vertices);
-
-	vector<Line> notIntersectedDiagonals = CheckEdgeAndDiagonalsForIntersection(possibleDiagonals, Edges);
-
-	bool ccw = IsCounterClockwise();
-	
-	Diagonals = EleminateDiagonalsInOutsideOfPolygon(ccw, Vertices, notIntersectedDiagonals);
-
-	BuildDiagonalGraph();
-
-	ColorizeDiagonals();
-}
-
-void Polygon::FindDiagonals(int step) 
-{
-	
-	BuildEdges();
-
-	Sleep(microsecond);
-
 	Diagonals = FindAllPossibleDiagonals(Vertices);
-
-	Sleep(microsecond);
 
 	Diagonals = CheckEdgeAndDiagonalsForIntersection(Diagonals, Edges);
 
-	Sleep(microsecond);
-
 	bool ccw = IsCounterClockwise();
-
+	
 	Diagonals = EleminateDiagonalsInOutsideOfPolygon(ccw, Vertices, Diagonals);
-
-	Sleep(microsecond);
 
 	BuildDiagonalGraph();
 
 	ColorizeDiagonals();
-
 }
 
 void Polygon::BuildEdges() 
@@ -146,6 +119,41 @@ void Polygon::ColorizeDiagonals()
 	{
 		if (!Diagonals[i].DidColored)
 			Diagonals[i].ColorizeWithIntersectedLines(Color_1, Color_2);
+	}
+}
+
+void Polygon::BuildDiagonals()
+{
+	BuildEdges();
+
+	Diagonals = FindAllPossibleDiagonals(Vertices);
+}
+
+void Polygon::EleminateDiagonalsWithIntersectedEdges()
+{
+	Diagonals = CheckEdgeAndDiagonalsForIntersection(Diagonals, Edges);
+}
+
+void Polygon::EleminateDiagonalsInOutsidePolygon()
+{
+	bool ccw = IsCounterClockwise();
+
+	Diagonals = EleminateDiagonalsInOutsideOfPolygon(ccw, Vertices, Diagonals);
+}
+
+void Polygon::ColorizePolygonDiagonal()
+{
+	BuildDiagonalGraph();
+
+	ColorizeDiagonals();
+}
+
+void Polygon::RemoveDiagonalsNotUsingForTriangulation()
+{
+	for (auto index = Diagonals.begin(); index != Diagonals.end(); index++)
+	{
+		if (index->LineColor == Color_2)
+			Diagonals.erase(index--);
 	}
 }
 

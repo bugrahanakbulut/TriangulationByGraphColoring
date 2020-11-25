@@ -2,7 +2,6 @@
 #include <vector>
 #include <glut.h>
 #include <GLM/vec2.hpp>
-#include<thread> 
 #include "Polygon.h"
 
 using namespace glm;
@@ -11,14 +10,18 @@ using namespace std;
 int _windowWidth = 1280;
 int _windowHeight = 720;
 
-bool _isCounterStarted = false;
-int _frameCounter = 0, _stepFrame = 200;
+int _delayEachStep = 500;
 
 vec2 _candidateVertex;
 
 Polygon* _polygon = new Polygon();
 
 void StartDrawPolygon();
+void StepOne(int v);
+void StepTwo(int v);
+void StepThree(int v);
+void StepFour(int v);
+void StepFive(int v);
 
 void draw_polygon(int button, int state, int x, int y)
 {
@@ -76,7 +79,7 @@ void display(void)
 
         for (Line diagonal : _polygon->Diagonals)
 		{
-			glColor3f(diagonal.LineColor[0], diagonal.LineColor[1], diagonal.LineColor[2]);
+            glColor3f(diagonal.LineColor[0], diagonal.LineColor[1], diagonal.LineColor[2]);
 			glVertex2f(diagonal.StartPos[0], diagonal.StartPos[1]);
 			glVertex2f(diagonal.FinishPos[0], diagonal.FinishPos[1]);
         }
@@ -92,7 +95,62 @@ void StartDrawPolygon()
 {
     _polygon->DidPolygonClosed = true;
 
-    _polygon->FindDiagonals();
+    _polygon->BuildDiagonals();
+
+    glutTimerFunc(_delayEachStep, StepOne, 0);
+}
+
+void StepOne(int v)
+{
+    _polygon->BuildDiagonals();
+
+    glutPostRedisplay();
+
+    glutTimerFunc(_delayEachStep, StepTwo, 0);
+
+    cout << "Step One\n";
+}
+
+void StepTwo(int v)
+{
+    _polygon->EleminateDiagonalsWithIntersectedEdges();
+
+	glutPostRedisplay();
+
+    glutTimerFunc(_delayEachStep, StepThree, 0);
+
+	cout << "Step Two\n";
+}
+
+void StepThree(int v)
+{
+	_polygon->EleminateDiagonalsInOutsidePolygon();
+
+    glutPostRedisplay();
+
+	glutTimerFunc(_delayEachStep, StepFour, 0);
+
+	cout << "Step Three\n";
+}
+
+void StepFour(int v)
+{
+    _polygon->ColorizePolygonDiagonal();
+
+    glutPostRedisplay();
+
+    glutTimerFunc(_delayEachStep, StepFive, 0);
+    
+    cout << "Step Four\n";
+}
+
+void StepFive(int v)
+{
+    _polygon->RemoveDiagonalsNotUsingForTriangulation();
+
+    glutPostRedisplay();
+
+	cout << "Step Five\n";
 }
 
 int main(int argc, char** argv)

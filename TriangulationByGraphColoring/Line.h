@@ -11,7 +11,7 @@ class Line
 {
 public:
 	
-	vec3 LineColor = vec3(0, 0, 0);
+	vec3 LineColor = vec3(255, 0, 0);
 
 	vec2 StartPos;
 	vec2 FinishPos;
