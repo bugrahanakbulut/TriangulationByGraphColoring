@@ -9,7 +9,9 @@ You can find all implementation details in report.
 # Project Setup
 
 To include external libraries you should open solution properties as shown.
+
 ![alt text](https://github.com/bugrahanakbulut/TriangulationByGraphColoring/blob/main/Setup/Tutorial_00.png?raw=true)
+
 ![alt text](https://github.com/bugrahanakbulut/TriangulationByGraphColoring/blob/main/Setup/Tutorial_01.png?raw=true)
 
 Paste following line into Additional Include Directiories
