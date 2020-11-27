@@ -21,10 +21,10 @@ $(SolutionDir)/../ExternalLibs/GLFW/include;$(SolutionDir)/../ExternalLibs/GLEW/
 Than you need to import glut into your system by using Setup/glut-3.7.6-bin.zip. 
 
 glut.h: 'C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\GL\'
+
 glut32.lib: 'C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\'
+
 glut32.dll: 'C:\Windows\System32\'
-
-
 
 
 # Contact & Some Additional Notes
